@@ -1,0 +1,109 @@
+{
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ed8090b9-f8f0-4d6a-bb44-39032d75a018",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "68da37ab-0a34-485e-ac7d-9709ee69e647",
+      "name": "When chat message received",
+      "webhookId": "09ee1acb-408d-4c85-9f51-66903045945b"
+    },
+    {
+      "parameters": {
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        416,
+        0
+      ],
+      "id": "d1152539-8397-4246-965b-dffab0b592b7",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "14b70346-d9f1-4964-af1f-2ec11e29d5f6",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "kxs5zsbqGFPM7loV",
+          "name": "n8n free OpenAI API credits"
+        }
+      },
+      "notes": "api key"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ca969c9a-afdc-4750-9c74-e3b75e424c6a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8f4979b5609f77ff2f52e2e9eef7b296644d479783352d04d78c1f98403c3aa8"
+  },
+  "id": "lDLsxDyqSTMdJDMz",
+  "tags": []
+}
