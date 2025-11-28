@@ -1,0 +1,150 @@
+{
+  "name": "ai.gmail",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f37d8e9d-427b-4f9b-8bc3-aac316df08cb",
+      "name": "When chat message received",
+      "webhookId": "78983f5c-87dc-4c7a-9bb1-d6f419919c9f"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "392415ac-3576-4109-aae7-a7cbb563d6ae",
+      "name": "AI Agent",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        208
+      ],
+      "id": "bbc04e30-df1e-4d93-b020-0106f1e235e6",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "kxs5zsbqGFPM7loV",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "id": "8283e26b-b0c5-43f0-b81d-c737355454ba",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "sendTo": "mousavisanei0@gmail.com",
+        "subject": "hi",
+        "emailType": "text",
+        "message": "this form for test",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        208
+      ],
+      "id": "426f9c34-3d1d-4eb7-ad9c-42a6df4ef724",
+      "name": "جيميل",
+      "webhookId": "fec8d567-961a-4b70-b59a-de037ffe50b6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yWTYuiaJbDvweYC6",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "جيميل": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8ad4e1e2-8611-4367-8583-00df51aa5213",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8f4979b5609f77ff2f52e2e9eef7b296644d479783352d04d78c1f98403c3aa8"
+  },
+  "id": "RpTOQwLJAf4iXs1w",
+  "tags": []
+}
